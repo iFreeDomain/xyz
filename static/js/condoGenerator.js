@@ -3,8 +3,6 @@ const submitBtn=condoGenerator.getElementsByTagName("button")[0]
 const{robloxUsername,maxPlayerCount,map:mapSelect}=condoGenerator.elements
 condoGenerator.addEventListener('submit',async(event)=>{submitBtn.disabled=true
 event.preventDefault()
-const fieldData=await getFieldData()
-const requestData={maxPlayerCount:parseInt(maxPlayerCount.value),mapId:parseInt(mapSelect.value),captchaToken:await promptSignUpCaptcha(fieldData.split(",")[1]),fieldData:fieldData}
 generatePrivateCondo(requestData).then((placeId)=>window.location.href=getGameLink(placeId)).catch((err)=>swal.fire({title:"Error while generating private condo",text:err.message,icon:"error"}))
 swal.fire({title:"CondoRequester",text:"Your private condo is being generated...",allowOutsideClick:false,allowEscapeKey:false,allowEnterKey:false,showConfirmButton:false})
 swal.showLoading()})
